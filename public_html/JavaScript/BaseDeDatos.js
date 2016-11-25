@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+window.onload = startDB;
 var indexedDB = window.indexedDB || window.webkitIndexedDB;
 var dataBase = null;
 
@@ -24,6 +24,7 @@ function startDB(){
      
      dataBase.onsuccess = function(e){
          alert('Database loaded');
+         
              
      };
      
@@ -31,6 +32,8 @@ function startDB(){
          alert('Error loading Database');
          
      };
+     
+     document.getElementById("btnRegistro").addEventListener("click", add, false);
     
         
 }
@@ -59,7 +62,10 @@ function add(){
 
         
     };
+    document.getElementById("formRegUsuario").submit();
+    document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/index.html";
     alert("Objeto añadido correctamente");
+    
      
 }
 

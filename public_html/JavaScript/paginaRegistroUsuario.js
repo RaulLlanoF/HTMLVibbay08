@@ -5,7 +5,15 @@
  */
 
 
-window.onload = revisar;
+window.onload = empieza;
+var indexedDB = window.indexedDB || window.webkitIndexedDB;
+var dataBase = null;
+
+function empieza(){
+    startDB();
+    revisar();
+    
+}
     
 function revisionGeneral() {
     var correcto = true;
@@ -90,8 +98,7 @@ function revisarFecha(){
 }
 function revisar(){
     document.getElementById("btnRegistro").addEventListener("click", revisionGeneral, false);
-    var email = document.getElementById("email");    document.getElementById("btnRegistro").addEventListener("click", revisionGeneral, false);
-
+    var email = document.getElementById("email");
     email.oninput = function() {
         if(!revisarEmail())
             email.className='error';
@@ -129,5 +136,103 @@ function revisar(){
             fechanacimiento.className='error';
         else
             fechanacimiento.className='form-input';
+    }
+}
+
+
+function startDB(){
+    
+     dataBase = indexedDB.open('Vibbay', 1);
+    
+     
+     dataBase.onupgradeneeded = function(e){
+         
+         var active = dataBase.result;
+         var object = active.createObjectStore('usuario',{keyPath: 'id',autoIncrement : true});
+         object.createIndex('by_name','nombre',{unique: false});
+         object.createIndex('by_phone','telefono', {unique : true});
+         object.createIndex('by_mail','email', {unique : true});
+         
+     };
+     
+     dataBase.onsuccess = function(e){
+         alert('Database loaded');
+         
+             
+     };
+     
+     dataBase.onerror = function(e){
+         alert('Error loading Database');
+         
+     };
+     
+     document.getElementById("btnRegistro").addEventListener("click", lanzar, false);
+    
+        
+}
+function add(){
+    var active = dataBase.result;
+    var data = active.transaction(["usuario"],"readwrite");
+    var object = data.objectStore("usuario");
+    
+    var request = object.put({
+        nombre: document.querySelector("#nombre").value,
+        telefono: document.querySelector("#telefono").value,
+        email: document.querySelector("#email").value,
+        contrasena : document.querySelector("#contrasena").value,
+        fechanacimiento : document.querySelector("#fechanacimiento").value
+    });
+    
+    request.onerror = function(e){
+        
+        alert(request.error.name + '\n\n' + request.error.message);
+        
+        
+                
+    };
+    data.oncomplete = function(e){
+        alert("Objeto añadido correctamente");
+
+        
+    };
+    document.getElementById("formRegUsuario").submit();
+    document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/index.html";
+    alert("Objeto añadido correctamente");
+    
+     
+}
+function lanzar(){
+    add();
+    saveData();
+}
+
+function saveData(){
+    
+    var mail = document.getElementById("email").value;
+    var contrasena = document.getElementById("contrasena").value;
+    
+    if(localStorage.getItem(mail) === null){
+        localStorage.setItem(mail, contrasena);
+    }
+    else{
+        alert("El mail introducido ya esta en uso. Vuelva a intentarlo con otro mail");
+    }
+}
+
+function checkData(){
+    
+    var mail = document.getElementById("email").value;
+    var contrasena = document.getElementById("contrasena").value;
+    
+    var outHTML = '';
+    
+    if(localStorage.getItem(mail) != null && localStorage.getItem(mail) == contrasena){
+        alert("usuario correcto")
+        outHTML +='hola';
+        document.querySelector("#emailUsuario").innerHTML = outHTML
+        $('#emailUsuario').append('hola');
+    }
+    else{
+        alert("usuario incorrecto");
     }
 }
