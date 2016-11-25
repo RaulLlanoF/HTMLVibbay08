@@ -56,9 +56,48 @@ function add(){
     };
     data.oncomplete = function(e){
         alert("Objeto añadido correctamente");
-        
-        
+
         
     };
+    alert("Objeto añadido correctamente");
      
+}
+
+function login(){
+
+    alert("11");
+    var active = dataBase.result;
+    alert("12");
+    var data = active.transaction(["usuario"], "readonly");
+    alert("13");
+    var object = data.objectStore("usuario");
+    alert("14");
+    var elements = [];
+    
+    object.openCursor().onsuccess = function (e){
+        
+        var result = e.target.result;
+        
+        if(result == null){
+            return;
+        }
+        elements.push(result.value);
+        result.continue();
+    };
+    //var emailEnviado =document.querySelector('#email').value;
+    //var contrasenaEnviada = document. querySelector('#contrasena').value;
+    var emailEnviado =document.getElementById("email").value;
+    var contrasenaEnviada = document.getElementById("contrasena").value;
+    
+    
+    for(var key in elements){
+        
+        if(elements[key].email == emailEnviado && elements[key].contrasena == contrasenaEnviada){
+            
+           alert("Usuario Correcto");
+            
+        }
+        alert("Usuario Incorrecto");
+    }
+    
 }

@@ -37,7 +37,8 @@ function revisionGeneral() {
     
     if(correcto){
         document.getElementById("formRegUsuario").submit();
-        alert("11");
+        document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/index.html";
+        //alert("11");
     }
     }
 function revisarEmail () {
