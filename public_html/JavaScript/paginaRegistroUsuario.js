@@ -142,12 +142,16 @@ function revisar(){
 
 function startDB(){
     
-     dataBase = indexedDB.open('Vibbay', 1);
+     dataBase = indexedDB.open('Vibbay2', 1);
     
      
      dataBase.onupgradeneeded = function(e){
          
          var active = dataBase.result;
+         
+         var object1 = active.createObjectStore('producto',{keyPath:'id',autoIncrement:true});
+         object1.createIndex('by_categoria','categoria',{unique:false});
+         
          var object = active.createObjectStore('usuario',{keyPath: 'id',autoIncrement : true});
          object.createIndex('by_name','nombre',{unique: false});
          object.createIndex('by_phone','telefono', {unique : true});

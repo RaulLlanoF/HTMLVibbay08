@@ -9,16 +9,22 @@ var dataBase = null;
 
 function startDB(){
     
-     dataBase = indexedDB.open('Vibbay', 1);
+     dataBase = indexedDB.open('Vibbay2', 1);
     
      
      dataBase.onupgradeneeded = function(e){
          
          var active = dataBase.result;
+         
+         var object1 = active.createObjectStore('producto',{keyPath:'id',autoIncrement:true});
+         object1.createIndex('by_categoria','categoria',{unique:false});
+         
          var object = active.createObjectStore('usuario',{keyPath: 'id',autoIncrement : true});
          object.createIndex('by_name','nombre',{unique: false});
          object.createIndex('by_phone','telefono', {unique : true});
          object.createIndex('by_mail','email', {unique : true});
+         
+        
          
      };
      
@@ -33,9 +39,41 @@ function startDB(){
          
      };
      
-     document.getElementById("btnRegistro").addEventListener("click", add, false);
+     document.getElementById("btnRegistroProducto").addEventListener("click", addProducto, false);
+     
     
         
+}
+function addProducto(){
+    var active = dataBase.result;
+    var data = active.transaction(["producto"],"readwrite");
+    var object = data.objectStore("producto");
+    
+    var request = object.put({
+        nombreproducto: document.querySelector("#nombreproducto").value,
+        descripcion: document.querySelector("#descripcion").value,
+        categoria: document.querySelector("#categoria").value,
+        precio: document.querySelector("#precio").value,
+        foto: document.querySelector("#caja").value,
+        correopropietario: sessionStorage.getItem("email")
+    });
+    request.onerror = function(e){
+        
+        alert(request.error.name + '\n\n' + request.error.message);
+        
+        
+                
+    };
+    data.oncomplete = function(e){
+        alert("Objeto añadido correctamente");
+        document.getElementById("formRegProducto").submit();
+        
+
+        
+    };
+    
+    
+    
 }
 function add(){
     var active = dataBase.result;

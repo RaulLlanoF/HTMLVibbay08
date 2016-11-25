@@ -21,9 +21,10 @@ function revisionGeneral() {
         contrasena.className='error';
     }
     if(correcto){
-        document.getElementById("formRegUsuario").submit();
-        document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/index.html";
-    }
+        checkData();
+        //document.getElementById("formRegUsuario").submit();
+        //document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/MenuUsuario.html";
+        }
     }
 function revisarEmail () {
     var email = document.getElementById("email");
@@ -61,4 +62,37 @@ function revisar(){
         else
             contrasena.className='form-input';
     }
+}
+function saveData(){
+    
+    var mail = document.getElementById("email").value;
+    var contrasena = document.getElementById("contrasena").value;
+    
+    if(localStorage.getItem(mail) == null)
+        localStorage.setItem(mail, contrasena);
+    else
+        alert("El mail introducido ya esta en uso. Vuelva a intentarlo con otro mail");
+}
+
+function checkData(){
+    
+    var mail = document.getElementById("email").value;
+    var contrasena = document.getElementById("contrasena").value;
+    
+    var outHTML = '';
+    
+    if(localStorage.getItem(mail) != null && localStorage.getItem(mail) == contrasena){
+        alert("usuario correcto");
+        sessionStorage.setItem("email", mail);
+        document.getElementById("formRegUsuario").submit();
+        document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/MenuUsuario.html";
+       // outHTML +='hola';
+        //document.querySelector("#emailUsuario").innerHTML = outHTML
+        //$('#emailUsuario').append('hola');
+    }
+    else{
+        alert("usuario incorrecto");
+        document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/inicioSesion.html";
+    }
+    
 }

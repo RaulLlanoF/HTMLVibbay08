@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="CSS/formularioRegistroProductoCss.css">
         <script type="text/javascript" src="JavaScript/dragAndDrop1.js"></script>
         <link href="CSS/cabeceraCss.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="JavaScript/paginaRegistroProducto.js"></script>
     </head>
     <body>
         <header>
@@ -28,13 +29,13 @@
             </nav>
         </header>
         <div class="form">
-            <form action="index.html">
+            <form action="MenuUsuario.html" id="formRegProducto">
                 <fieldset>
                     <legend><span class="number"></span> Formulario de Registro De Articulo</legend>
                     <input type="text" name="nombreproducto" id="nombreproducto" placeholder="Escribe el nombre del producto" required >
                     <textarea name="descripcion" id="descripcion" rows="5" placeholder="Escribe la descripcción del producto"></textarea>
-                    <%-- falta decidir como se va a hacer lo de la foto --%>
-                    <p> Seleccione la categoria de su producto</p> <select name="busqueda" id="busqueda" class="form-input" id="busqueda">
+                    
+                    <p> Seleccione la categoria de su producto</p> <select name="busqueda" id="categoria" class="form-input" >
                         <option value="Electronica">Electronica</option>
                         <option value="Deporte">Deporte</option>
                         <option value="Hogar">Hogar</option>
@@ -44,8 +45,8 @@
                     <div class="imagenUsuario"   id="caja"></div>
                     <table >
                         <tr>
-                            <th><input type="submit" id="btnRegistroProducto" value="Enviar"  /> </th>
-                            <th><input type="submit"  value="Volver" onclick = "location='index.html'"/></th>
+                            <th><input type="button" id="btnRegistroProducto" value="Enviar"  /> </th>
+                            <th><input type="button"  value="Volver" onclick = "location='index.html'"/></th>
                         </tr>
                     </table>
                 </fieldset>

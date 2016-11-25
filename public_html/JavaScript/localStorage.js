@@ -23,11 +23,17 @@ function checkData(){
     var outHTML = '';
     
     if(localStorage.getItem(mail) != null && localStorage.getItem(mail) == contrasena){
-        alert("usuario correcto")
+        alert("usuario correcto");
+        sessionStorage.setItem("email", mail);
+        document.getElementById("formRegUsuario").sumbit();
+        document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/MenuUsuario.html";
         outHTML +='hola';
         document.querySelector("#emailUsuario").innerHTML = outHTML
         $('#emailUsuario').append('hola');
     }
-    else
+    else{
         alert("usuario incorrecto");
+        document.location.href = "http://localhost:8383/HTMLVibbay08/public_html/inicioSesion.html";
+    }
+    
 }
