@@ -11,24 +11,32 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="CSS/cabeceraCss.css" type="text/css" rel="stylesheet">
         <link href="CSS/cssMenu.css" type="text/css" rel="stylesheet">
+        <script type="text/javascript" src="JavaScript/cerrarSesion.js"></script>
     <body>
         <header>
         <a href="index.html">
             <!-- <em><img src="IMG/CoolClips_vc026403.png"/></em>-->
                 <em>Vibbay</em>
             </a>
-            <nav>   
+            <nav>  
+                
                 <ul>
-                    <li><a href="inicioSesion.html">Acceder</a></li>
-                   <li><a href="formularioRegistro.html">Registrarse</a></li>
+                    <li>Bienvenido! <script type="text/javascript"> var nombreSesion = sessionStorage.getItem("email");document.writeln(nombreSesion);</script></li>
+                    <li><button type="button"  id="link" >Cerrar Sesión</button></li>
+                   
+                   
+                   
                 </ul>
             </nav>
         </header>
         <ul class="form">
             <li><a class="profile" href="articulosConDueño.html"><i class="icon-user"></i>Mis Productos</a></li>
         <li ><a class="messages" href="formularioRegistroProducto.html">Subastar Objeto</a></li>
+        
 	
 </ul>
+ 
         
+      
     </body>
 </html>

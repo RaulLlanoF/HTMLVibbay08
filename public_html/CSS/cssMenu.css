@@ -53,3 +53,7 @@ ul.form {
 .form li.selected a {
     background:#efefef;
 }
+button{
+    margin: auto;
+    
+}
