@@ -83,6 +83,10 @@ function loadAll() {
 
         elements = [];
         document.querySelector("#elementsList").innerHTML = outerHTML;
+        document.getElementById("btndeporte").addEventListener("click", loadDeporte, false);
+        document.getElementById("btnelectronica").addEventListener("click", loadElectronica, false);
+        document.getElementById("btnhogar").addEventListener("click", loadHogar, false);
+        
     };
 
 }
@@ -248,7 +252,7 @@ function loadHogar(){
                     <td>' + elements[key].descripcion + '</td>\n\
                     <td>' + elements[key].categoria + '</td>\n\
                     <td>\n\
-                    <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
+                    <button type="button"  onclick="load(' + elements[key].id + ')">Details</button>\n\
                             </td>\n\
                 </tr>';
 

@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="CSS/cabeceraCss.css" rel="stylesheet" type="text/css">
+        <link href="CSS/listaArticulosCss.css" rel="stylesheet" type="text/css">
         <script type="text/javascript" src="JavaScript/paginaListaArticulos.js"></script>
         <title>JSP Page</title>
     </head>
@@ -26,7 +27,7 @@
                 </ul>
             </nav>
         </header>
-        <h1>Aqui estan los articulos que ha buscado</h1>
+        <div class="form">
         <div id="elements">
     <table>
         <caption>Articulos</caption>
@@ -44,9 +45,16 @@
         </tbody>
     </table>
 </div>
-        <button type="button" onclick="loadDeporte()" >Categoria deporte</button>
-        <button type="button" onclick="loadElectronica()" >Categoria electronica</button>
-        <button type="button" onclick="loadHogar()" >Categoria hogar</button>
+        <div class="prueba">
+            <table>
+                <tr>
+                    <th><button type="button" class="botones" id="btndeporte"  >Categoria deporte</button></th>
+                    <th><button type="button" class="botones" id="btnelectronica"  >Categoria electronica</button></th>
+                    <th> <button type="button" class="botones" id="btnhogar"  >Categoria hogar</button></th>
+            </tr>
+        </table>
+        </div>
+            </div>
 
 
     </body>
