@@ -111,8 +111,15 @@ function load(id){
     
     
 }
- function loadAllByName() {
-        var active = dataBase.result;
+ 
+    
+    
+    
+    
+    
+    
+function loadDeporte(){
+    var active = dataBase.result;
         var data = active.transaction(["producto"], "readonly");
         var object = data.objectStore("producto");
         var index = object.index("by_categoria");
@@ -137,23 +144,122 @@ function load(id){
             var outerHTML = '';
 
             for (var key in elements) {
+                if(elements[key].categoria === "Deporte"){
 
                 outerHTML += '\n\
                 <tr>\n\
                     <td>' + elements[key].nombreproducto + '</td>\n\
-                    <td>' + elements[key].precio + '</td>\n\\n\
+                    <td>' + elements[key].precio + '</td>\n\
+                    <td>' + elements[key].descripcion + '</td>\n\
                     <td>' + elements[key].categoria + '</td>\n\
                     <td>\n\
-                        <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
-                    </td>\n\
+                    <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
+                            </td>\n\
                 </tr>';
 
             }
+        }
 
             elements = [];
             document.querySelector("#elementsList").innerHTML = outerHTML;
         };
-    }
+    
+}
+
+function loadElectronica(){
+    var active = dataBase.result;
+        var data = active.transaction(["producto"], "readonly");
+        var object = data.objectStore("producto");
+        var index = object.index("by_categoria");
+
+        var elements = [];
+
+        index.openCursor().onsuccess = function (e) {
+
+            var result = e.target.result;
+
+            if (result === null) {
+                return;
+            }
+
+            elements.push(result.value);
+            result.continue();
+
+        };
+
+        data.oncomplete = function () {
+
+            var outerHTML = '';
+
+            for (var key in elements) {
+                if(elements[key].categoria === "Electronica"){
+
+                outerHTML += '\n\
+                <tr>\n\
+                    <td>' + elements[key].nombreproducto + '</td>\n\
+                    <td>' + elements[key].precio + '</td>\n\
+                    <td>' + elements[key].descripcion + '</td>\n\
+                    <td>' + elements[key].categoria + '</td>\n\
+                    <td>\n\
+                    <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
+                            </td>\n\
+                </tr>';
+
+            }
+        }
+
+            elements = [];
+            document.querySelector("#elementsList").innerHTML = outerHTML;
+        };
+    
+}
+function loadHogar(){
+    var active = dataBase.result;
+        var data = active.transaction(["producto"], "readonly");
+        var object = data.objectStore("producto");
+        var index = object.index("by_categoria");
+
+        var elements = [];
+
+        index.openCursor().onsuccess = function (e) {
+
+            var result = e.target.result;
+
+            if (result === null) {
+                return;
+            }
+
+            elements.push(result.value);
+            result.continue();
+
+        };
+
+        data.oncomplete = function () {
+
+            var outerHTML = '';
+
+            for (var key in elements) {
+                if(elements[key].categoria === "Hogar"){
+
+                outerHTML += '\n\
+                <tr>\n\
+                    <td>' + elements[key].nombreproducto + '</td>\n\
+                    <td>' + elements[key].precio + '</td>\n\
+                    <td>' + elements[key].descripcion + '</td>\n\
+                    <td>' + elements[key].categoria + '</td>\n\
+                    <td>\n\
+                    <button type="button" onclick="load(' + elements[key].id + ')">Details</button>\n\
+                            </td>\n\
+                </tr>';
+
+            }
+        }
+
+            elements = [];
+            document.querySelector("#elementsList").innerHTML = outerHTML;
+        };
+    
+}
 
 
 
