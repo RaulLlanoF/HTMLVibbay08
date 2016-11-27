@@ -40,7 +40,7 @@ function startDB() {
         alert('Error loading Database');
 
     };
-    
+
     //document.getElementById("btnRegistroProducto").addEventListener("click", addProducto, false);
 
 
@@ -59,13 +59,13 @@ function loadAll() {
         if (result === null) {
             return;
         }
-        
+
         elements.push(result.value);
         result.continue();
-            
-        
 
-        
+
+
+
 
 
 
@@ -75,9 +75,9 @@ function loadAll() {
         var outerHTML = '';
 
         for (var key in elements) {
-            if(elements[key].correopropietario === sessionStorage.getItem("email")){
+            if (elements[key].correopropietario === sessionStorage.getItem("email")) {
 
-            outerHTML += '\n\
+                outerHTML += '\n\
                         <tr>\n\
                             <td>' + elements[key].nombreproducto + '</td>\n\
                             <td>' + elements[key].precio + '</td>\n\
@@ -86,7 +86,7 @@ function loadAll() {
                             <td>\n\
                         </tr>';
 
-        }
+            }
         }
         elements = [];
         document.querySelector("#elementsList").innerHTML = outerHTML;
@@ -95,32 +95,32 @@ function loadAll() {
 
 }
 function loadAllByName() {
-        var active = dataBase.result;
-        var data = active.transaction(["producto"], "readonly");
-        var object = data.objectStore("producto");
-        var index = object.index("by_categoria");
+    var active = dataBase.result;
+    var data = active.transaction(["producto"], "readonly");
+    var object = data.objectStore("producto");
+    var index = object.index("by_categoria");
 
-        var elements = [];
+    var elements = [];
 
-        index.openCursor().onsuccess = function (e) {
+    index.openCursor().onsuccess = function (e) {
 
-            var result = e.target.result;
+        var result = e.target.result;
 
-            if (result === null) {
-                return;
-            }
+        if (result === null) {
+            return;
+        }
 
-            elements.push(result.value);
-            result.continue();
+        elements.push(result.value);
+        result.continue();
 
-        };
+    };
 
-        data.oncomplete = function () {
+    data.oncomplete = function () {
 
-            var outerHTML = '';
+        var outerHTML = '';
 
-            for (var key in elements) {
-                if(elements[key].correopropietario === sessionStorage.getItem("email")){
+        for (var key in elements) {
+            if (elements[key].correopropietario === sessionStorage.getItem("email")) {
 
                 outerHTML += '\n\
                 <tr>\n\
@@ -134,7 +134,7 @@ function loadAllByName() {
             }
         }
 
-            elements = [];
-            document.querySelector("#elementsList").innerHTML = outerHTML;
-        };
-        }
+        elements = [];
+        document.querySelector("#elementsList").innerHTML = outerHTML;
+    };
+}

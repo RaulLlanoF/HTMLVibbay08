@@ -8,43 +8,47 @@ and open the template in the editor.
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="CSS/cabeceraCss.css" rel="stylesheet" type="text/css">
+        <link href="CSS/listaArticulosCss.css" rel="stylesheet" type="text/css"> 
         <script type="text/javascript" src="JavaScript/paginaArticulosConDueño.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
         <header>
-        <a href="index.html">
-            <!-- <em><img src="IMG/CoolClips_vc026403.png"/></em>-->
+            <a href="index.html">
+                <!-- <em><img src="IMG/CoolClips_vc026403.png"/></em>-->
                 <em>Vibbay</em>
             </a>
             <nav>
                 <ul>
                     <li><a href="MenuUsuario.html">Volver Al Menu</a></li>
-                   
+
                 </ul>
             </nav>
         </header>
-        <h1>Aqui estan los articulos que ha buscado</h1>
-        <div id="elements">
-    <table>
-        <caption>Articulos</caption>
-        <thead>
-            <tr>
-                <th>Nombre Articulo</th>
-                <th>Precio</th>
-                <th>Descripcion</th>
-                <th>Categoria</th>
-                <th> </th>
-            </tr>
-        </thead>
-        <tbody id="elementsList">
-            <tr>
-                <td colspan="3">Not elements to show</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-        <button type="button" id="btnordenar" >Ordenar por categoria</button> 
+
+        <div class="form">
+            <div id="elements">
+                <table>
+                    <caption>Articulos</caption>
+                    <thead>
+                        <tr>
+                            <th>Nombre Articulo</th>
+                            <th>Precio</th>
+                            <th>Descripcion</th>
+                            <th>Categoria</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="elementsList">
+                        <tr>
+                            <td colspan="3">Not elements to show</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button type="button" class="botones" id="btnordenar" >Ordenar por categoria</button>
+        </div>
+
 
 
     </body>
